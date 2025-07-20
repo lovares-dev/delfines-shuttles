@@ -1,10 +1,14 @@
 import React from 'react';
-import ConstructionMessage from './components/ConstructionMessage';
+import MainContainer from './components/MainContainer';
+import Footer from './components/Footer';
+import Header from './components/Header';
 
 const App = () => {
   return (
     <div>
-      <ConstructionMessage />
+      <Header />
+      <MainContainer />
+      <Footer />
     </div>
   );
 };
