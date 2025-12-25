@@ -45,6 +45,7 @@ module.exports = (env, argv) => {
           use: [
             'style-loader', // Inyecta CSS en el DOM
             'css-loader', // Interpreta @import y url()
+            'postcss-loader',
             {
               loader: 'sass-loader',
               options: {
@@ -61,21 +62,24 @@ module.exports = (env, argv) => {
         // Regla para CSS
         {
           test: /\.css$/,
-          use: ['style-loader', 'css-loader'],
+          use: ['style-loader', 'css-loader', 'postcss-loader'],
         },
         // Regla para imágenes y archivos estáticos
         {
-          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          test: /\.(png|svg|jpe?g|gif)$/i,
           type: 'asset/resource',
+          generator: {
+            filename: 'assets/[name][ext]',
+          },
         },
       ],
     },
     plugins: [
       // Plugin para generar el archivo HTML
       new HtmlWebpackPlugin({
-        template: './src/index.html', // Plantilla HTML
+        template: './public/index.html', // Plantilla HTML
         filename: 'index.html', // Nombre del archivo de salida
-        favicon: './src/favicon.ico', // Ruta al favicon
+        favicon: './public/favicon.ico', // Ruta al favicon
         minify: isProduction
           ? {
               removeComments: true, // Elimina comentarios
@@ -94,9 +98,9 @@ module.exports = (env, argv) => {
       // Plugin para copiar archivos estáticos (como CNAME)
       new CopyWebpackPlugin({
         patterns: [
-          { from: 'src/favicon.ico', to: '' }, // Copia el favicon a la raíz de dist
-          { from: 'src/CNAME', to: '' }, // Copia el archivo CNAME a la raíz de dist
-          { from: 'src/assets', to: 'assets' }, // Copia la carpeta assets
+          { from: 'public/favicon.ico', to: '' }, // Copia el favicon a la raíz de dist
+          { from: 'public/CNAME', to: '' }, // Copia el archivo CNAME a la raíz de dist
+          { from: 'public/assets', to: 'assets' }, // Copia la carpeta assets
         ],
       }),
     ],
