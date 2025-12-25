@@ -6,9 +6,10 @@
     "dsznajder.es7-react-js-snippets",
     "ms-vscode.live-server",
     "ritwickdey.live",
-    "visualstudioexptteam.vscodeintellicode",
-    "ms-vscode.js-debug-nightly"
-    //   "github.copilot",
-    //   "github.copilot-chat"
+    // "visualstudioexptteam.vscodeintellicode",
+    "ms-vscode.js-debug-nightly",
+    "github.copilot",
+    "github.copilot-chat",
+    "continue.continue"
   ]
 }
